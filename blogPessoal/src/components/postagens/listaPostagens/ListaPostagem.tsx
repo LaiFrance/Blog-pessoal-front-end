@@ -15,7 +15,7 @@ import './ListaPostagens.css'
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../tokens/tokensReducer';
 
-function ListaPostagens() {
+function ListaPostagem() {
   
 
   const token = useSelector<TokenState, TokenState["token"]>(

@@ -19,19 +19,14 @@ import useLocalStorage from 'react-use-localstorage';
 import { getAll, getId, put, post } from '../../../service/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../tokens/tokensReducer';
-import { Usuario } from '../../../models/Usuario';
 
 function CadastroPostagem() {
   const history = useNavigate();
   const token = useSelector<TokenState, TokenState["token"]>(
     (state) => state.token
   )
-  const userId = useSelector<TokenState, TokenState["id"]>(
-    (state) => state.id
-  )
   const { id } = useParams<{ id: string }>();
   const [temas, setTemas] = useState<Tema[]>([]);
-
 
   const [postagem, setPostagem] = useState<Postagem>({
     id: 0,
@@ -39,18 +34,7 @@ function CadastroPostagem() {
     texto: '',
     data: '',
     tema: null,
-    usuario: null,
   });
-
-  const [usuario, setUsuario] = useState<Usuario>({
-    id: +userId,
-    nome: '',
-    usuario: '',
-    senha: '',
-    foto: '',
-
-  })
-
 
   const [tema, setTema] = useState<Tema>({
     id: 0,
@@ -99,7 +83,6 @@ function CadastroPostagem() {
     setPostagem({
       ...postagem,
       tema: tema,
-      usuario: usuario,
     });
   }, [tema]);
 

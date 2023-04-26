@@ -6,8 +6,7 @@ import UsuarioLogin from '../../models/UsuarioLogin'
 import { login } from '../../service/Service'
 import useLocalStorage from 'react-use-localstorage'
 import { useDispatch } from 'react-redux'
-import { addId, addToken } from '../../tokens/action';
-
+import { addToken } from '../../tokens/actions';
 
 function Login() {
 
@@ -31,28 +30,6 @@ function Login() {
     token: ''
   })
 
-  const [respUserLogin, setRespUserLogin] = useState<UsuarioLogin>({
-    id: 0,
-    nome: '',
-    usuario: '',
-    foto: '',
-    senha: '',
-    token: ''
-  })
-
-  async function conectar(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault()
-    try {
-      setIsLoading(true)
-      await login('/usuarios/logar', userLogin, setToken)
-      alert('Usuario logado com sucesso')
-    } catch(error) {
-      setIsLoading(false)
-      console.log(error);
-      alert('Usuário ou senha inválidos')
-    }
-  }
-  
   // função responsável por pegar o que foi digitado no campo, e atualizar o estado do Usuario
   function updateModel(event: ChangeEvent<HTMLInputElement>) {
     setUserLogin({
@@ -78,15 +55,11 @@ function Login() {
 
   // Hook de controle de "efeito colateral" que irá ficar monitorando a variavel token, e quando ela mudar, vai cair no if... caso seja verdadeiro, navega nosso usuário para a tela de Home
   useEffect(() => {
-    if(token) {
+    if(token !== '') {
+      dispatch(addToken(token))
       history('/home')
     }
   }, [token])
-
-
-
-
-
 
   return (
     <>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import { TokenState } from '../../../tokens/tokensReducer';
-import { addToken } from '../../../tokens/action';
+import { addToken } from '../../../tokens/actions';
 function Navbar() {
   const token = useSelector<TokenState, TokenState["token"]>(
     (state) => state.token

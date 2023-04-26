@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 import * as React from 'react';
-import BackEnd from '../backEnd/BackEnd';
+import BackEnd from '../../pages/backEnd/BackEnd';
 
 function FrontEnd() {
     const divStyles = {
